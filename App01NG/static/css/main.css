@@ -1,0 +1,38 @@
+#uno {
+color:rgb(3, 3, 194);
+}
+
+#dos {
+    color:rgb(194, 5, 5);
+}
+
+#proudly {
+    font-weight: bold;
+    font-size: 17px;
+    font-style: oblique;
+}
+
+#pierde {
+    color: red !important;
+    font-weight: bold !important;
+    font-style: oblique !important;
+}
+
+.reset {
+    font-size: 14px !important;
+    font-weight: bold !important;
+    font-style: oblique !important;
+}
+
+.bbox{
+    height: 171px;
+}
+
+.color-azul{
+    color:blue !important;
+}
+
+.color-rojo{
+    color:rgb(255, 0, 0) !important;
+}
+

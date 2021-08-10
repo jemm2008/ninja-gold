@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NINJA_GOLD</title>
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+</head>
+<body>
+
+    <div class="container">
+{# Titulo #}
+        <div class="row mt-3 text-center">
+            <h1>NINJA's GOLD</h1>
+            <p id ="proudly">proudly made with Django, by <span id="uno">jemm</span><span id="dos">2008</span></p>
+        </div>
+{# Tus Monedas BOX #}
+        <div class="row mt-3 mb-3">
+            <div class="card col-sm-4 col-md-3 ms-5 text-center">
+                <h5>Tus Monedas: </h5>
+            </div>
+            <div class="card col-sm-2 col-xs-5 ms-5 text-center">
+                <h5> {{ request.session.tus_monedas }} </h5>
+            </div>
+{# RESET Tus Monedas #} 
+            <div class="col-sm-2 col-xs-5 ms-5">
+                <form action='process_money/' method='post'>
+                    {% csrf_token %}
+                    <input type="hidden" name="monedas" value="0">
+                    <button type="submit" class="reset btn btn-success">COBRÁ !!!</button>
+                </form> 
+            </div>
+        </div>
+{# Sección Ganacias/Pérdidas #}
+        <div class="row mt-4 mb-3">
+{# GRANJA #}
+            <div class="card col-xs-12 col-sm-6 col-md-3 text-center">
+                <h5 class="card-header">GRANJA</h5>
+                <div class="card-body">
+                    <p class="card-text">Obtén 10 a 20 monedas</p>
+                    <form action='process_money/' method='post'>
+                        {% csrf_token %}
+                        <input type="hidden" name="monedas" value="1">
+                        <button type="submit" class="btn btn-primary">Ganá Oro !!!</button>
+                    </form>                    
+                </div>
+            </div>
+{# CUEVA #}
+            <div class="card col-xs-12 col-sm-6 col-md-3 text-center">
+                <h5 class="card-header">CUEVA</h5>
+                <div class="card-body">
+                    <p class="card-text">Obtén 5 a 10 monedas</p>
+                    <form action='process_money/' method='post'>
+                        {% csrf_token %}
+                        <input type="hidden" name="monedas" value="2">
+                        <button type="submit" class="btn btn-primary">Ganá Oro !!!</button>
+                    </form> 
+                </div>
+            </div>
+{# CASA #}
+            <div class="card col-xs-12 col-sm-6 col-md-3 text-center">
+                <h5 class="card-header">CASA</h5>
+                <div class="card-body">
+                    <p class="card-text">Obtén 2 a 5 monedas</p>
+                    <form action='process_money/' method='post'>
+                        {% csrf_token %}
+                        <input type="hidden" name="monedas" value="3">
+                        <button type="submit" class="btn btn-primary">Ganá Oro !!!</button>
+                    </form> 
+                </div>
+            </div>
+{# CASINO #}
+            <div class="card col-xs-12 col-sm-6 col-md-3 text-center">
+                <h5 class="card-header">CASINO</h5>
+                <div class="card-body">
+                    <p class="card-text">Ganá <span id="pierde">(o Perdé)</span> 0 a 50 monedas</p>
+                    <form action='process_money/' method='post'>
+                        {% csrf_token %}
+                        <input type="hidden" name="monedas" value="4">
+                        <button type="submit" class="btn btn-primary">Arriesgátee Che !!!</button>
+                    </form> 
+                </div>
+            </div>
+        </div>
+{# Actividades #}
+        <div class="row mt-4">
+            <h6>Actividades:</h6>
+        </div>
+{# Sección LOG #}
+        <div id="exit" class="row card bbox overflow-auto">
+            
+            <ul class="list-inline">
+
+                {% for salida in request.session.salidapost reversed %}
+
+                    <li class="reset color-{{salida.color}}">{{ salida.msg }} {{ salida.time }}</li>
+                    
+                {% endfor %}
+            </ul>
+        </div>
+
+
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+</body>
+</html>
